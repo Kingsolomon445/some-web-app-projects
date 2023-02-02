@@ -1,5 +1,6 @@
 # some-web-app-projects
 In this repository contains some web app projects I made with either django or flask
+
 Note: All projects in here can be utilized for any use with your preferred modifications
 
 

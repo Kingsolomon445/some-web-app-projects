@@ -1,0 +1,89 @@
+
+{%- extends "base.html" %}
+
+
+
+{% block content %}
+    <h2>Filter Results</h2>
+{#    Filter Results#}
+ <form action="{{ url_for ('home') }}" method="get">
+  <div class="form-group">
+    <!-- Add select element for location filter -->
+    <label for="location">Location:</label>
+    <select class="form-control" id="location" name="location">
+      <option value="">--Select Location--</option>
+      {% for location in locations %}
+        <option value="{{ location }}">{{ location }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="form-group">
+    <!-- Add select element for wifi filter -->
+    <label for="wifi">Wifi:</label>
+    <select class="form-control" id="wifi" name="wifi">
+      <option value="">--Select Wifi--</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <!-- Add select element for toilet filter -->
+    <label for="toilet">Toilet:</label>
+    <select class="form-control" id="toilet" name="toilet">
+      <option value="">--Select Toilet--</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <!-- Add select element for socket filter -->
+    <label for="socket">Socket:</label>
+    <select class="form-control" id="socket" name="socket">
+      <option value="">--Select Socket--</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+
+  <input class="btn btn-primary filter-button" type="submit" value="Filter">
+</form>
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+    {% if cafes %}
+        {% for cafe in cafes %}
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{ cafe.img_url }}" alt="cafe image" class="bd-placeholder-img card-img-top" width="100%" height="180"  role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect></img>
+          <div class="card-body">
+            <h5 class="card-title">{{ cafe.name }}</h5>
+            <p class="card-text">Coffee Price: {{ cafe.coffee_price }}</p>
+            <p class="card-text">Location: {{ cafe.location }}</p>
+            <p class="card-text">Seats: {{ cafe.seats }}</p>
+              {% if cafe.has_sockets %}
+                <p class="card-text"><small class="text-muted">Sockets are available</small></p>
+              {% endif %}
+              {% if cafe.has_wifi %}
+                 <p class="card-text"><small class="text-muted">Wifi is available.</small></p>
+              {% endif %}
+              {% if cafe.can_take_calls %}
+                  <p class="card-text"><small class="text-muted">Can take calls.</small></p>
+              {% endif %}
+              {% if cafe.has_toilet %}
+                  <p class="card-text"><small class="text-muted">Has toilet.</small></p>
+              {% endif %}
+          </div>
+          <div class="card-footer">
+            <a href="{{ cafe.map_url }}"><small class="text-muted">View on Google Maps</small></a>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+    {% else %}
+        <h3><i>No Results for this filter.</i></h3>
+    {% endif %}
+    </div>
+{% endblock %}

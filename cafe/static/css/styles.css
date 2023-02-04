@@ -1,0 +1,42 @@
+
+
+ /*Hero Image*/
+.heading_shadow {
+    color: #ffffff;
+}
+
+
+#hero {
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhZmV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60');
+    background-size: cover;
+    background-position: 75%;
+    color: white;
+    min-height: 400px;
+    text-align: center;
+    margin-bottom: 100px;
+    position: relative;
+}
+
+#hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#hero p {
+    font-size: 2rem;
+    margin:0;
+    text-shadow: 2px 2px 4px #333333;
+}
+
+
+/*Filter*/
+
+ .filter-button {
+     margin-top: 30px;
+     margin-bottom: 100px;
+ }
